@@ -8,8 +8,9 @@ import {
 } from "remix";
 import type { MetaFunction } from "remix";
 
+
 export const meta: MetaFunction = () => {
-  return { title: "New Remix App" };
+  return { title: "Have no emo!" };
 };
 
 export default function App() {
@@ -21,7 +22,7 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body style={{backgroundColor:"#6667AB23"}}>
         <Outlet />
         <ScrollRestoration />
         <Scripts />
