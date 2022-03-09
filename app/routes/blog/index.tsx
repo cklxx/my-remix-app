@@ -1,6 +1,6 @@
 import ArticleCard from "~/comps/ArticleCard";
 import { Container, Center, Loader, Space, Title, Text } from "@mantine/core";
-import { getArticleData } from "../data/getArticleData";
+import { getArticleData } from "../../data/getArticleData";
 export default function Index() {
 	const { data } = getArticleData();
 	return (
