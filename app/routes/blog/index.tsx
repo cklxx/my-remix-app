@@ -1,8 +1,22 @@
 import ArticleCard from "~/comps/ArticleCard";
-import { Container, Center, Loader, Space, Title, Text } from "@mantine/core";
+import { Container, Center, Loader, Space, Title, Text, Image } from "@mantine/core";
 import { getArticleData } from "../../data/getArticleData";
+import type { LoaderFunction } from "remix";
+import { json,useLoaderData } from "remix";
+
+export const loader: LoaderFunction = async ({ params }) => {
+	const data = await getArticleData({offset:0,count:10 });
+	if (!data) {
+	  throw new Response(`No client found by ID ${params.clientId}`, {
+		status: 404,
+	  });
+	}
+  
+	return json(data);
+  };
+  
 export default function Index() {
-	const { data } = getArticleData();
+	const { data } = useLoaderData();
 	return (
 		<>
 			<Title
@@ -33,7 +47,7 @@ export default function Index() {
 					Have fun for yourself!
 				</Text>
 			</Title>
-			{data.map((item: any, idx: number) => (
+			{data && data.map((item: any, idx: number) => (
 				<Container padding="xs" key={idx}>
 					<Center style={{ margin: "auto" }}>
 						<ArticleCard article={item} />
